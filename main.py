@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from player import Player
 
 
 def main():
@@ -12,8 +13,13 @@ Screen height: {SCREEN_HEIGHT}""")
     clock = pygame.time.Clock()
     delta_time = 0
 
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x, y)
+
     while True:
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
 
         for event in pygame.event.get():
