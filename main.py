@@ -19,6 +19,8 @@ Screen height: {SCREEN_HEIGHT}""")
 
     while True:
         screen.fill("black")
+
+        player.update(delta_time)
         player.draw(screen)
         pygame.display.flip()
 
