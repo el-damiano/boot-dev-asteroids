@@ -13,20 +13,27 @@ Screen height: {SCREEN_HEIGHT}""")
     clock = pygame.time.Clock()
     delta_time = 0
 
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+
+    Player.containers = (updatables, drawables)
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
     player = Player(x, y)
 
     while True:
-        screen.fill("black")
-
-        player.update(delta_time)
-        player.draw(screen)
-        pygame.display.flip()
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
+        updatables.update(delta_time)
+
+        screen.fill("black")
+
+        for sprite in drawables:
+            sprite.draw(screen)
+
+        pygame.display.flip()
 
         delta_time = clock.tick(60) / 1000
 
