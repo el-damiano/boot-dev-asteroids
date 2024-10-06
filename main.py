@@ -32,7 +32,7 @@ Screen height: {SCREEN_HEIGHT}""")
     y = SCREEN_HEIGHT / 2
     player = Player(x, y)
 
-    Bullet.containers = (updatables, drawables)
+    Bullet.containers = (updatables, drawables, bullets)
 
     while True:
         for event in pygame.event.get():
@@ -45,6 +45,11 @@ Screen height: {SCREEN_HEIGHT}""")
             if asteroid.is_colliding(player):
                 print('Game Over!')
                 sys.exit()
+
+            for bullet in bullets:
+                if asteroid.is_colliding(bullet):
+                    asteroid.hit()
+                    bullet.kill()
 
         screen.fill("black")
 
