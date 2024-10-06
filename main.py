@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from asteroidfield import AsteroidField
@@ -35,6 +36,11 @@ Screen height: {SCREEN_HEIGHT}""")
                 return
 
         updatables.update(delta_time)
+
+        for asteroid in asteroids:
+            if asteroid.is_colliding(player):
+                print('Game Over!')
+                sys.exit()
 
         screen.fill("black")
 
